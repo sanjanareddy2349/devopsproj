@@ -1,0 +1,16 @@
+metadata:
+  name: pinterestdemo-deployment
+spec:
+  selector:
+    matchLabels:
+      app: pinterestdemo
+  template:
+    metadata:
+      labels:
+        app: pinterestdemo
+    spec:
+      containers:
+        - name: pinterestdemo
+          image: sanjanaa09/sample:pinterestclone   # <-- NEW IMAGE NAME
+          ports:
+            - containerPort: 5000

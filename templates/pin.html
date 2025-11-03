@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pin.title }}</title>
+    <style>
+        body {
+            background-color: #fff5f5;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+        img {
+            width: 400px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #e60023;
+            margin-top: 20px;
+        }
+        p {
+            width: 60%;
+            text-align: center;
+            color: #555;
+        }
+        a {
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #e60023;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        a:hover {
+            background-color: #b3001b;
+        }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename=pin.image.split('static/')[1]) }}" alt="{{ pin.title }}">
+    <h1>{{ pin.title }}</h1>
+    <p>{{ pin.desc }}</p>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

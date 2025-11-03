@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest Mock</title>
+    <style>
+       
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Red top bar */
+        .banner {
+            width: 100%;
+            background-color: #e60023;
+            display: flex;
+            justify-content: flex-start; /* changed: left-align horizontally */
+            align-items: center;          /* keep vertical centering */
+            padding: 15px 20px;           /* added horizontal padding */
+        }
+
+        .banner h1 {
+            color: white;
+            font-size: 28px;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+
+        h2 {
+            color: #b3001b;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .pin-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .pin {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .pin:hover {
+            transform: scale(1.05);
+        }
+
+        .pin img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .pin-title {
+            text-align: center;
+            padding: 10px;
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pinterest-style top bar -->
+    <div class="banner">
+        <h1>Pinterest</h1>
+    </div>
+
+    <h2>Explore Ideas</h2>
+
+    <div class="pin-container">
+        {% for pin in pins %}
+        {% set img_rel = pin.image.replace('static/','') %}
+        <div class="pin" onclick="location.href='{{ url_for('pin_detail', pin_id=pin.id) }}'">
+            <img src="{{ url_for('static', filename=img_rel) }}" alt="{{ pin.title }}">
+            <div class="pin-title">{{ pin.title }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
