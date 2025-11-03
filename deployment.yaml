@@ -1,6 +1,9 @@
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: pinterestdemo-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: pinterestdemo
@@ -11,6 +14,6 @@ spec:
     spec:
       containers:
         - name: pinterestdemo
-          image: sanjanaa09/sample:pinterestclone   # <-- NEW IMAGE NAME
+          image: sanjanaa09/sample:pinterestclone
           ports:
             - containerPort: 5000
